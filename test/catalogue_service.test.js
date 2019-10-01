@@ -18,4 +18,45 @@ describe("catalogueService", () => {
       expect(catalogueService.checkBook("The Wind")).toBe(false);
     });
   });
+
+  describe("catalogueService.countBooksByKeywords", () => {
+    test("returns a number of how many book titles match a given keyword", () => {
+      expect(catalogueService.countBooksByKeyword("assassin")).toBe(3);
+    });
+
+    test("returns a number of how many book titles match keyword", () => {
+      expect(catalogueService.countBooksByKeyword("normal")).toBe(2);
+    });
+
+    test("returns a count of how many book titles match a given keyword", () => {
+      expect(catalogueService.countBooksByKeyword("pineapple")).toBe(0);
+    });
+  });
+
+  describe("catalogueService.getBooksByAuthor", () => {
+    test("returns a list of books by a given author", () => {
+      expect(catalogueService.getBooksByAuthor("Charles Dickens")).toEqual([
+        "A Tale of Two Cities",
+        "Oliver Twist",
+        "Great Expectations"
+      ]);
+    });
+    test("returns an empty array", () => {
+      expect(catalogueService.getBooksByAuthor("Marian Keyes")).toEqual([]);
+    });
+  });
+
+  describe("catalogueService.getStockCount", () => {
+    test("return the number of items that are in stock of a given title", () => {
+      expect(catalogueService.getStockCount("Between the Assassinations")).toBe(9);
+    });
+
+    test("return the number of items that are in stock of a given title", () => {
+      expect(catalogueService.getStockCount("A Tale of Two Cities")).toBe(3);
+    });
+
+    test("return the number of items that are in stock of a given title", () => {
+      expect(catalogueService.getStockCount("The Great Gatsby")).toBe(0);
+    });
+  });
 });

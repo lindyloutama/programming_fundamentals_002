@@ -23,34 +23,75 @@ const catalogue = [
 ];
 
 function checkBook(title) {
-  if (!title) throw new Error("Please provide a title");
-  // Your code here
+  if (!title) throw new Error("Please provide a title"); {
+    // loop through array of catalogue
+    for (let i = 0; i < catalogue.length; i++) {
+    // create variable to hold all lowercase titles
+      lowerTitle = title.toLowerCase();
+    // create statement to find out whether the catalogue includes title
+      if (catalogue[i].includes(title)) {
+    // if return true
+        return true;
+      }
+    }
+    // otherwise return false
+    return false
+  }
 }
 
 function countBooksByKeyword(keyword) {
   if (!keyword) throw new Error("Please provide a keyword");
-  // Your code here
+  // create variable for the number of keywords found in catalogue array
+  let count = 0;
+  // create a loop to go through array
+  for (let i = 0; i < catalogue.length; i++) {
+  // create a variable to change all titles to lowercase 
+    const words = catalogue[i].toLowerCase();
+  // create variable to hold keywords in lowercase
+    const books = keyword.toLowerCase();
+  // if statement to check whether the words variable includes books variable
+    if (words.includes(books)) {
+  // 
+      count++;
+    }
+  }
+  // return the number of keywords.
+  return count;
 }
 
-function getBooksByAuthor(author) {
-  if (!author) throw new Error("Please provide an author");
-  // Your code here
-}
+  function getBooksByAuthor(author) {
+    if (!author) throw new Error("Please provide an author");
+    // create variable to hold new array
+    const booksByAuthor = [];
+    // loop through the array
+    for (let i = 0; i < catalogue.length; i++) {
+    // create variable to hold catalogue index
+      const books = catalogue[i];
+    // check if 
+      if (books.author === author) {
+        const title = book.title;
+        booksByAuthor.push(title);
+      }
+    }
+    return booksByAuthor;
+  }
 
-function getStockCount(title) {
-  if (!title) throw new Error("Please provide a title");
-  // Your code here
-}
 
-function stockReview(title) {
-  if (!title) throw new Error("Please provide a title");
-  // Your code here
-}
+  function getStockCount(title) {
+    if (!title) throw new Error("Please provide a title");
 
-module.exports = {
-  checkBook,
-  countBooksByKeyword,
-  getBooksByAuthor,
-  getStockCount,
-  stockReview
-};
+
+  }
+
+  function stockReview(title) {
+    if (!title) throw new Error("Please provide a title");
+    // Your code here
+  }
+
+  module.exports = {
+    checkBook,
+    countBooksByKeyword,
+    getBooksByAuthor,
+    getStockCount,
+    stockReview
+  };
