@@ -61,16 +61,11 @@ function countBooksByKeyword(keyword) {
 
   function getBooksByAuthor(author) {
     if (!author) throw new Error("Please provide an author");
-    // create variable to hold new array
-    const booksByAuthor = [];
-    // loop through the array
-    for (let i = 0; i < catalogue.length; i++) {
-    // create variable to hold catalogue index
-      const books = catalogue[i];
-    // check if 
-      if (books.author === author) {
-        const title = book.title;
-        booksByAuthor.push(title);
+      const booksByAuthor = [];
+        for (let i = 0; i < catalogue.length; i++) {
+          if (catalogue[i].includes(author)) {
+            let books = catalogue[i].indexOf(" by")
+              booksByAuthor.push(catalogue[i].slice(0, books));
       }
     }
     return booksByAuthor;
@@ -79,13 +74,34 @@ function countBooksByKeyword(keyword) {
 
   function getStockCount(title) {
     if (!title) throw new Error("Please provide a title");
+      let count = 0;
+        for (let i = 0; i < catalogue.length; i++) {
+          if (catalogue[i].includes(!title)){
+            count = 0;
+          } else if 
+            (catalogue[i].includes(title)){
+              let num = catalogue[i].slice(-3, -1);
+              count = Number(num) ? num : num[1]; 
+            }
+          }
+        return Number(count);
+      }
 
-
-  }
 
   function stockReview(title) {
     if (!title) throw new Error("Please provide a title");
-    // Your code here
+      let count = 0;
+       for (let i = 0; i < catalogue.length; i++) {
+         if (getStockCount(title) === 0){
+           return "Not in stock";
+         } else if (getStockCount(title) > 0 && getStockCount(title) <= 5) {
+           return "Low stock";
+         } else if (getStockCount(title) >= 5 && getStockCount(title) <= 10) {
+           return "Medium stock";
+         } else if (getStockCount(title) > 10) {
+           return "High stock";
+         }
+      }
   }
 
   module.exports = {

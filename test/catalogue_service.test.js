@@ -59,4 +59,19 @@ describe("catalogueService", () => {
       expect(catalogueService.getStockCount("The Great Gatsby")).toBe(0);
     });
   });
+
+  describe("catalogueService.stockReview", () =>  {
+    test("return Dracula is not in stock", () => {
+      expect(catalogueService.stockReview("Dracula")).toBe("Not in stock");
+    });
+    test("return Normal People is Low stock", () => {
+      expect(catalogueService.stockReview("Normal People")).toBe("Low stock"); 
+    });
+    test("return The Blind Assassin is medium stock", () => {
+      expect(catalogueService.stockReview("The Blind Assassin")).toBe("Medium stock");
+    });
+    test("return The Origin of Species is High stock", () => {
+      expect(catalogueService.stockReview("The Origin of Species")).toBe("High stock");
+    });
+  });
 });
